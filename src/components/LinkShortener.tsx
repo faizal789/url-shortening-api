@@ -20,7 +20,7 @@ const LinkShortener: FunctionComponent<LinkShortenerProps> = () => {
 
   const mutation = useMutation({
     mutationFn: (params: Params) => {
-      return axios.post("https://cleanuri.com/api/v1/shorten", params);
+      return axios.post("http://localhost:3000/api/v1/shorten", params);
     },
   });
 
@@ -67,14 +67,19 @@ const LinkShortener: FunctionComponent<LinkShortenerProps> = () => {
         onSubmit={handleSubmit}
         className="w-full flex max-md:flex-col gap-4 p-12 max-sm:p-8"
       >
-        <input
-          type="url"
-          required
-          placeholder="Shorten a link here..."
-          className="w-10/12 h-16 rounded-lg px-8 max-md:w-full"
-          value={url}
-          onChange={handleUrlChange}
-        />
+        <div className="w-10/12 flex flex-col gap-2">
+          <input
+            type="url"
+            required
+            placeholder="Shorten a link here..."
+            className="w-full h-16 rounded-lg px-8 max-md:w-full"
+            value={url}
+            onChange={handleUrlChange}
+          />
+          {mutation.isSuccess ? (
+            <div className="text-cyan-primary">A short link has been added</div>
+          ) : null}
+        </div>
         <button className="w-1/6 h-16 bg-cyan-primary rounded-lg text-white  hover:opacity-75 active:scale-95 cursor-pointer transition duration-300 max-md:w-full">
           Shorten it!
         </button>
