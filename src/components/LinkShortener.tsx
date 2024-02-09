@@ -21,7 +21,7 @@ const LinkShortener: FunctionComponent<LinkShortenerProps> = () => {
   const mutation = useMutation({
     mutationFn: (params: Params) => {
       return axios.post(
-        "https://url-shortening-api-proxy-8k2ohiaz6-faizal-raflis-projects.vercel.app/api/proxy",
+        "https://url-shortening-api-proxy.vercel.app/api/proxy",
         params
       );
     },
